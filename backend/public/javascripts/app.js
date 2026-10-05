@@ -167,16 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setupResponsiveNavigation();
   applyNavigationState();
   renderServices();
-  document
-    .querySelector("#contact-form")
-    ?.addEventListener("submit", handleContactSubmit);
-  document.querySelector("#login-form")?.addEventListener("submit", handleLoginSubmit);
-  const session = readStored("fieldwork-basic-session", {});
-  const name = document.querySelector("#dashboard-name");
-  if (name) name.textContent = session.name ? `${session.name}.` : "there.";
-  document.querySelector("[data-action='logout']")?.addEventListener("click", () => {
-    localStorage.removeItem("fieldwork-basic-session");
-    window.location.assign("login.html");
-  });
+
+  const contactForm = document.querySelector("#contact-form");
+  contactForm?.addEventListener("submit", handleContactSubmit);
+
   window.addEventListener("hashchange", applyNavigationState);
 });
