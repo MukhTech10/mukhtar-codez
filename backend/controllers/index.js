@@ -1,4 +1,5 @@
 // CONTROLLER
+const { sendMailToOwner, sendAckToCustomer } = require('../utils/mailer')
 
 //Home Controller
 module.exports.index = function (req, res, next) {
@@ -6,18 +7,30 @@ module.exports.index = function (req, res, next) {
 }
 
 //HANDLE CONTACT
-module.exports.sendMessage = function (req, res, next) {
-    //Get Values From Form
-    const name = req.body.name
-    const email = req.body.email
-    const topic = req.body.topic || ''
-    const message = req.body.message
-    //Create Time Stamp
-    const date = new Date()
+// HANDLE CONTACT
+module.exports.sendMessage = async function (req, res, next) { // 1. Added 'async' keyword here
+    try {
+        // Get Values From Form
+        const name = req.body.name;
+        const email = req.body.email;
+        const topic = req.body.topic || '';
+        const message = req.body.message;
+        
+        // Create Time Stamp
+        const date = new Date();
 
-    //log to console to test
-    console.log(`${name} with email ${email} sent a message on the topic ${topic} which reads thus ${message}`)
+        // 2. Node blocks execution until both emails are successfully sent
+        await Promise.all([
+            sendMailToOwner({ name, email, topic, message }),
+            sendAckToCustomer({ name, email })
+        ]);
 
-    //refresh the page
-    res.redirect('/#contact')
+        // 3. Only refresh the page AFTER the emails are completely gone
+        res.redirect('/#contact');
+
+    } catch (error) {
+        // 4. Always catch mail delivery failures so your server doesn't crash
+        console.error("Form Submission Mailer Error:", error.message);
+        next(error); 
+    }
 }
