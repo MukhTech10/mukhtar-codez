@@ -1,5 +1,5 @@
 require('dotenv').config();
-console.log("PASS LENGTH: ", process.env.EMAIL_PASS?.length, "PASS: ", process.env.EMAIL_PASS);
+console.log("PASS LENGTH: ", process.env.EMAIL_PASS?.length);
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
