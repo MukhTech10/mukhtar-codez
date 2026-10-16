@@ -527,6 +527,52 @@ h2 em {
     font-size: 0.88rem;
 }
 
+.projects-section {
+    padding: var(--space-section) clamp(1.25rem, 9vw, 9rem);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    max-width: 69rem;
+    margin: auto;
+}
+
+.project-card {
+    display: flex;
+    min-height: 15rem;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--color-line);
+}
+
+.project-index,
+.project-status {
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+.project-card h3 {
+    margin: 1.3rem 0 0.55rem;
+    font-family: Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 400;
+}
+
+.project-card p {
+    margin: 0 0 1.4rem;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+}
+
+.project-card .text-link,
+.project-card .project-status {
+    margin-top: auto;
+}
+
 .contact-section {
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
@@ -565,6 +611,10 @@ h2 em {
 
 .contact-email span {
     color: var(--color-secondary);
+}
+
+.whatsapp-link {
+    margin-top: 1.4rem;
 }
 
 .contact-meta {
@@ -651,6 +701,20 @@ h2 em {
 
 .site-footer>p {
     margin: 0;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 0.65rem;
+}
+
+.footer-socials a {
+    display: grid;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid var(--color-line);
+    font-size: 1rem;
 }
 
 .site-footer>div {
@@ -907,7 +971,8 @@ h2 em {
     }
 
     .principle-grid,
-    .service-grid {
+    .service-grid,
+    .project-grid {
         grid-template-columns: 1fr;
     }
 
@@ -953,6 +1018,11 @@ h2 em {
 
     .site-footer>div {
         margin-left: auto;
+    }
+
+    .site-footer .footer-socials {
+        order: 4;
+        width: 100%;
     }
 }
 

@@ -169,6 +169,39 @@
         </div>
     </section>
 
+    <!-- Keep project names, destinations, and delivery status together for straightforward portfolio updates. -->
+    <section class="projects-section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Selected Work</p>
+                <h2 id="projects-title">Projects built with <em>purpose.</em></h2>
+            </div>
+            <p>A small selection of products and engineering work, with the next project currently in progress.</p>
+        </div>
+        <div class="project-grid">
+            <article class="project-card">
+                <span class="project-index">01 / PUBLISHING</span>
+                <h3>Somlabyte</h3>
+                <p>A blog experience for sharing ideas, stories, and practical perspectives.</p>
+                <a class="text-link" href="https://somlabyte.vercel.app" target="_blank" rel="noopener noreferrer">
+                    Visit Somlabyte <span aria-hidden="true">↗</span>
+                </a>
+            </article>
+            <article class="project-card">
+                <span class="project-index">02 / AGENCY</span>
+                <h3>Mukhtar Codez</h3>
+                <p>This agency website, presenting full-stack services, project offers, and a direct inquiry form.</p>
+                <a class="text-link" href="#home">Explore this site <span aria-hidden="true">↗</span></a>
+            </article>
+            <article class="project-card">
+                <span class="project-index">03 / UPCOMING</span>
+                <h3>Next Project</h3>
+                <p>A new project will be featured here when it is ready to share.</p>
+                <span class="project-status">Coming soon</span>
+            </article>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <div class="contact-aside">
@@ -178,6 +211,9 @@
                 hours.</p>
             <a class="contact-email" href="mailto:hello@mukhtarcodez.com">hello@mukhtarcodez.com <span
                     aria-hidden="true">↗</span></a>
+            <!-- Add a country-code phone number after wa.me to open a direct WhatsApp conversation. -->
+            <a class="button button-lime whatsapp-link" href="https://wa.me" target="_blank"
+                rel="noopener noreferrer">Message on WhatsApp <span aria-hidden="true">↗</span></a>
             <div class="contact-meta"><span>LAGOS, NG</span><span>WORKING WORLDWIDE</span></div>
         </div>
         <form class="contact-form" [formGroup]="contactForm" (submit)="handleSubmit()">
