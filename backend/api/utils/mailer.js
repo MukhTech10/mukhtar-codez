@@ -4,15 +4,18 @@ require('dotenv').config();
 // 1. Create Transporter
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,             // Changed from 465 to 587
-    secure: false,         // MUST be false for port 587
+    port: 465,                 // Changed to 465 (SSL)
+    secure: true,              // MUST be true for port 465
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
+    // High timeout settings (30 seconds)
+    connectionTimeout: 30000,
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
     tls: {
         rejectUnauthorized: false, // Prevents local SSL handshake rejections
-        // Forcibly down-prioritizes local security level issues breaking the handshake
         ciphers: 'DEFAULT@SECLEVEL=0',
         minVersion: 'TLSv1.2'      // Enforces modern security protocols
     },
@@ -22,14 +25,14 @@ const transporter = nodemailer.createTransport({
 //Verify Connection On Startup
 transporter.verify((err, success) => {
     console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS)
-    if (err) console.log("Mailer Error: ", err.message);
-    else console.log('Mailer Ready To Send')
+    if (err) console.log("api Mailer Error: ", err.message);
+    else console.log('Mailer Ready To Send api')
 })
 
 // 2. Send Email Alert To The Site Owner
 const sendMailToOwner = ({ name, email, topic, message }) => {
     return transporter.sendMail({
-        from: `"Fieldwork" <${process.env.EMAIL_USER}>`, 
+        from: `"Fieldwork" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_TO,
         replyTo: email,
         subject: `💼 New Lead: ${name} - ${topic}`,
@@ -86,7 +89,7 @@ const sendMailToOwner = ({ name, email, topic, message }) => {
 // 3. Send Beautiful Acknowledgement Receipt To Customer
 const sendAckToCustomer = ({ name, email }) => {
     return transporter.sendMail({
-        from: `"Fieldwork" <${process.env.EMAIL_USER}>`, 
+        from: `"Fieldwork" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: `✨ We received your message, ${name}!`,
         html: `

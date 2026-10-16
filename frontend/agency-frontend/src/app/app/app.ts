@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Services } from '../services/services';
 
 @Component({
   selector: 'app-app',
@@ -10,8 +11,10 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class App implements OnInit {
   submitted = false
   error = false
-  
+
   contactForm!: FormGroup;
+
+  constructor(private service: Services) { }
 
   ngOnInit(): void {
     this.contactForm = new FormGroup({
@@ -23,17 +26,43 @@ export class App implements OnInit {
   }
 
   handleSubmit() {
-    //log form values to console
-    console.log(this.contactForm)
-    console.log(this.contactForm.value)
 
-    //Wait 1.5 secs before sending confirmation
-    setTimeout(() => {
-      //Set Submitted as true, leave error as false and reset form after submision
-      this.submitted = true
-      this.error = false
-      this.contactForm.reset()
-    }, 1500)
+    //If Form Is Invalid Send Alert
+    if (this.contactForm.invalid) {
+      alert("Please Fill Out The Required Fields")
+    }
+
+    const payload = this.contactForm.value
+
+    this.service.sendMessage(payload)
+      .subscribe({
+        next: (result: any) => {
+          console.log(result)
+          setTimeout(() => {
+            //Set Submitted as true, leave error as false and reset form after submision
+            this.submitted = true
+            this.error = false
+            this.contactForm.reset()
+          }, 1500)
+        },
+        error: (err) => {
+          this.submitted = false
+          this.error = true
+          console.log('api error', err)
+          alert('An unexpected error occured please try again')
+        }
+      })
+  //   //log form values to console
+  //   console.log(this.contactForm)
+  //   console.log(this.contactForm.value)
+
+  //   //Wait 1.5 secs before sending confirmation
+  //   setTimeout(() => {
+  //     //Set Submitted as true, leave error as false and reset form after submision
+  //     this.submitted = true
+  //     this.error = false
+  //     this.contactForm.reset()
+  //   }, 1500)
   }
 
   //Access Form With A Getter
