@@ -155,3 +155,10 @@ npm start                         # Start Express on PORT or 3000
 ## License
 
 The backend package declares the ISC license. No repository-wide license has been defined; confirm ownership and licensing requirements before redistributing this project.
+
+## 👤 Author
+* **Mukhtar Sogunro** 
+* **GitHub:** [@MukhTech10](https://github.com/MukhTech10)
+
+---
+⭐ If you like this project, feel free to give it a star!

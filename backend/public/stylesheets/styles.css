@@ -263,12 +263,14 @@ h2 em {
 }
 .hero-visual {
   position: relative;
-  min-height: 32rem;
+  height: 32rem;
+  overflow: hidden;
 }
 .hero-visual > img {
   height: 100%;
   min-height: 32rem;
   object-fit: cover;
+  object-position: top;
 }
 .image-caption {
   position: absolute;

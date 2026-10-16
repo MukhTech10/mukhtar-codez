@@ -32,7 +32,7 @@ transporter.verify((err, success) => {
 // 2. Send Email Alert To The Site Owner
 const sendMailToOwner = ({ name, email, topic, message }) => {
     return transporter.sendMail({
-        from: `"Fieldwork" <${process.env.EMAIL_USER}>`,
+        from: `"Mukhtar Codez" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_TO,
         replyTo: email,
         subject: `💼 New Lead: ${name} - ${topic}`,
@@ -89,7 +89,7 @@ const sendMailToOwner = ({ name, email, topic, message }) => {
 // 3. Send Beautiful Acknowledgement Receipt To Customer
 const sendAckToCustomer = ({ name, email }) => {
     return transporter.sendMail({
-        from: `"Fieldwork" <${process.env.EMAIL_USER}>`,
+        from: `"Mukhtar Codez" <${process.env.EMAIL_USER}>`,
         to: email,
         subject: `✨ We received your message, ${name}!`,
         html: `

@@ -289,13 +289,17 @@ h2 em {
 
 .hero-visual {
     position: relative;
-    min-height: 32rem;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #111;
 }
 
 .hero-visual>img {
-    height: 100%;
-    min-height: 32rem;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .image-caption {
