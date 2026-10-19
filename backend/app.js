@@ -17,7 +17,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(cors({'origin': 'http://localhost:4200'}))
+app.use(cors({'origin': 'http://localhost:4200, https://mukhtar-codez.vercel.app'}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

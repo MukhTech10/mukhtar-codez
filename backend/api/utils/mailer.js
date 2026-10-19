@@ -4,8 +4,8 @@ require('dotenv').config();
 // 1. Create Transporter
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,                 // Changed to 465 (SSL)
-    secure: true,              // MUST be true for port 465
+    port: 587,                 // Changed to 587 (TLS)
+    secure: false,             // MUST be false for port 587
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
     socketTimeout: 30000,
     tls: {
         rejectUnauthorized: false, // Prevents local SSL handshake rejections
-        ciphers: 'DEFAULT@SECLEVEL=0',
+        ciphers: 'SSLv3',          // Ensures compatibility with older servers
         minVersion: 'TLSv1.2'      // Enforces modern security protocols
     },
 });
@@ -24,7 +24,6 @@ const transporter = nodemailer.createTransport({
 
 //Verify Connection On Startup
 transporter.verify((err, success) => {
-    console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS)
     if (err) console.log("api Mailer Error: ", err.message);
     else console.log('Mailer Ready To Send api')
 })

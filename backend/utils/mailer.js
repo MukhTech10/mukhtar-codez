@@ -21,7 +21,6 @@ const transporter = nodemailer.createTransport({
 
 //Verify Connection On Startup
 transporter.verify((err, success) => {
-    console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS)
     if (err) console.log("Mailer Error: ", err.message);
     else console.log('Mailer Ready To Send')
 })
